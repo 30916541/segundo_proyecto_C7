@@ -112,6 +112,16 @@ fn main() {
         process::exit(1);
     }
 
+    let texto_expresion: String = texto_expresion
+        .chars()
+        .filter(|&c| c != '(' && c != ')')
+        .collect();
+
+    if texto_expresion.len() == 0 {
+        eprintln!("Error: la expresion esta vacia luego de eliminar los parentesis");
+        process::exit(1);
+    }
+
     // Arreglos paralelos para almacenar los tokens de la expresion
     let mut tokens_simbolos: [char; MAX_EXPRESION] = ['\0'; MAX_EXPRESION];
     let mut tokens_tipos: [Tipo; MAX_EXPRESION] = [Tipo::Operando; MAX_EXPRESION];
